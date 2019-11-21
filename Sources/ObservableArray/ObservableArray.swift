@@ -11,7 +11,7 @@ import Combine
 
 public final class ObservableArray<Element: ObservableObject & Hashable & Identifiable>: Sequence, ObservableObject {
     
-    typealias Observables = Array<Element>
+    public typealias Observables = Array<Element>
     
     public let objectWillChange = ObservableObjectPublisher()
     
@@ -39,8 +39,8 @@ public final class ObservableArray<Element: ObservableObject & Hashable & Identi
 }
 
 extension ObservableArray: Collection {
-    typealias Index = Observables.Index
-    typealias Element = Observables.Element
+    public typealias Index = Observables.Index
+    public typealias Element = Observables.Element
     
     public var startIndex: Index { return _elements.startIndex }
     public var endIndex: Index { return _elements.endIndex }
