@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-final class ObservableArray<Element: ObservableObject & Hashable & Identifiable>: Sequence, ObservableObject {
+public final class ObservableArray<Element: ObservableObject & Hashable & Identifiable>: Sequence, ObservableObject {
     
     typealias Observables = Array<Element>
     
