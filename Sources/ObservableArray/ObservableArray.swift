@@ -9,16 +9,16 @@
 import Foundation
 import Combine
 
-class ObservableArray<Element: ObservableObject & Hashable & Identifiable>: Sequence, ObservableObject {
+final class ObservableArray<Element: ObservableObject & Hashable & Identifiable>: Sequence, ObservableObject {
     
     typealias Observables = Array<Element>
     
-    let objectWillChange = ObservableObjectPublisher()
+    public let objectWillChange = ObservableObjectPublisher()
     
     private var _elements = Observables()
     private var _cancellables: [Element.ID: AnyCancellable] = [:]
     
-    init(_ elements: Observables) {
+    public init(_ elements: Observables) {
         self._elements = elements
         
         for element in _elements {
@@ -28,9 +28,9 @@ class ObservableArray<Element: ObservableObject & Hashable & Identifiable>: Sequ
         }
     }
     
-    init() {}
+    public init() {}
     
-    func append(_ element: Element) {
+    public func append(_ element: Element) {
         _elements.append(element)
          _cancellables[element.id] = element.objectWillChange.sink(receiveValue: { [unowned self] _ in
             self.objectWillChange.send()
@@ -42,13 +42,13 @@ extension ObservableArray: Collection {
     typealias Index = Observables.Index
     typealias Element = Observables.Element
     
-    var startIndex: Index { return _elements.startIndex }
-    var endIndex: Index { return _elements.endIndex }
+    public var startIndex: Index { return _elements.startIndex }
+    public var endIndex: Index { return _elements.endIndex }
     
-    subscript(index: Index) -> Element {
+    public subscript(index: Index) -> Element {
         return _elements[index]
     }
-    func index(after i: Index) -> Index {
+    public func index(after i: Index) -> Index {
         return _elements.index(after: i)
     }
 }
