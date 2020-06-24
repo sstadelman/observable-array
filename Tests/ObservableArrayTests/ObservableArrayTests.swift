@@ -1,4 +1,6 @@
+#if !os(watchOS)
 import XCTest
+
 @testable import ObservableArray
 
 final class ObservableArrayTests: XCTestCase {
@@ -6,3 +8,4 @@ final class ObservableArrayTests: XCTestCase {
         
     ]
 }
+#endif
