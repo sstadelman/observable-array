@@ -1,3 +1,4 @@
+#if !os(watchOS)
 import XCTest
 
 import ObservableArrayTests
@@ -5,3 +6,4 @@ import ObservableArrayTests
 var tests = [XCTestCaseEntry]()
 tests += ObservableArrayTests.allTests()
 XCTMain(tests)
+#endif
